@@ -1,0 +1,84 @@
+
+This is the explanation of my Algorithm to find the Minimum Cost Spanning Tree of a Graph.
+
+The Algorithm is divided into two parts :-
+1. First Half
+2. Second Half
+
+
+---------------------------------------------- Working of Algorithm ----------------------------------------------
+
+    First Half :-
+
+        This is Compulsory for the all the graphs to complete the first half. In first half we find a very closed vertex for every single vertex or you can say 
+        from the current position we have to find which vertex is closed and having a minimum weight. We will select that edge between them and will count that
+        in our Minimum Cost Spanning Tree.
+
+        For Example:-
+
+            (*This is an Undirected Graph)
+            vertex 0 is connected with vertex 1 with cost/weight 10. it is also connected with vertex 2 with cost/weight 20.
+            vertex 1 is connected with vertex 2 with cost/weight 20.
+
+            so the Adjacency Matrix Will be :-
+
+                        vertex 0    vertex 1    vertex 2
+
+            vertex 0        0           10          20
+
+            vertex 1        10          0           30
+
+            vertex 2        20          30          0
+
+
+            so from vertex 0 we will choose vertex 1 as it has minimum wieght. So now we have included that edge into our MCST so we have to update the matrix :-
+
+
+                        vertex 0    vertex 1    vertex 2
+
+            vertex 0        0           -          20
+
+            vertex 1        -           0          30
+
+            vertex 2        20          30          0
+
+
+            So now if we cannot choose next minimum weighted vertex for vertex 1 as it has already been selected. So now we will choose next minimum weighted vertex
+            for vertex 2. so it will be vertex 0 with cost 20. After updation the matrix will be:-
+
+                        vertex 0    vertex 1    vertex 2
+
+            vertex 0        0           -          -
+
+            vertex 1        -           0          30
+
+            vertex 2        -           30         0
+
+
+            So by now we have selected 2 edges and it is enough to make a MCST as total edges selected is equals to total vertices-1. So we don't need to move to Second
+            Half as we have found our MCST.
+
+
+
+    Second Half :-
+
+        This is not compulsory for every graph to procedd to second half. But sometimes we need this because the total edges selected after completing the First Half may
+        be lesser than the Total Vertices-1.
+
+        So in Second We just make the list of all the edges that has not been selected. After Making this list we have to remove all the edges from this list that will 
+        create a loop in the MCST. So after removing that we have to select the minimum weighted edge for our MCST. Repeat this process till we get the enough edges.
+
+
+---------------------------------------------- END ----------------------------------------------
+
+
+
+Analysis of the Algorithm:-
+
+    Time Complexity :- O( V + E ) || If we found our MCST in First-Half Itself then time complexity will be O(V) else O( V + E ) so overall is O( V + E ).
+
+    Space Complexity :- O( V ).
+
+
+
+So this was all about my Algorithm to find Minimum Cost Spanning Tree for a graph.
